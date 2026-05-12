@@ -1,0 +1,6 @@
+{
+  "isPaused": false,
+  "monitorPrivate": true,
+  "requireTrigger": true,
+  "maxLimit": 1000
+}
