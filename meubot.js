@@ -6,6 +6,8 @@ const qrcode = require('qrcode-terminal');
 const QRCode = require('qrcode'); // Para gerar imagem de QR code
 const readline = require('readline');
 const express = require('express');
+const path = require('path'); // Adicionado para gerenciar caminhos de arquivos
+
 
 let currentQRDataURL = ""; // Guarda o QR Code para o painel web
 let isConnected = false; // Status da conexão com o WhatsApp
@@ -121,7 +123,12 @@ try {
 // ==========================================
 const app = express();
 app.use(express.json());
-app.use(express.static('public')); // Serve a pasta public (HTML, CSS, JS)
+app.use(express.static(__dirname)); // Serve os arquivos diretamente da raiz
+
+// Rota principal para garantir que o index.html seja carregado
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.get('/api/status', (req, res) => res.json(CONFIG));
 app.post('/api/toggle', (req, res) => {
