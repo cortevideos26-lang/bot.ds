@@ -1,0 +1,110 @@
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+body {
+    background: #0f172a;
+    color: #f8fafc;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0) 50%);
+    z-index: -1;
+    animation: rotate 30s linear infinite;
+}
+@keyframes rotate { 100% { transform: rotate(360deg); } }
+
+.dashboard { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(to right, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+h1 span { font-weight: 300; font-size: 1.5rem; color: #64748b; -webkit-text-fill-color: initial;}
+
+.status-indicator {
+    padding: 0.5rem 1.5rem; border-radius: 2rem; font-weight: 500; font-size: 0.9rem;
+    background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+.glass {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.controls-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;
+}
+.card h2 { font-size: 1.3rem; margin-bottom: 0.5rem; color: #e2e8f0; }
+.card .desc { font-size: 0.9rem; color: #94a3b8; margin-bottom: 1.5rem; min-height: 45px; }
+
+/* Switch Toggle CSS */
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; margin-right: 15px; vertical-align: middle; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: #6366f1; box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); }
+input:checked + .slider:before { transform: translateX(26px); }
+
+.status-text { vertical-align: middle; font-weight: 500; color: #cbd5e1; }
+
+.logs-section { height: 450px; display: flex; flex-direction: column; }
+.logs-section h2 { margin-bottom: 1rem; color: #e2e8f0; font-size: 1.5rem;}
+.log-container {
+    flex: 1; overflow-y: auto; background: rgba(15, 23, 42, 0.7); border-radius: 1rem; padding: 1rem;
+    font-family: 'Courier New', monospace; font-size: 0.95rem; border: 1px solid rgba(255,255,255,0.05);
+}
+.log-container::-webkit-scrollbar { width: 8px; }
+.log-container::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+
+.log-entry { margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(255,255,255,0.1); line-height: 1.4; }
+.log-entry:last-child { border-bottom: none; }
+.log-time { color: #64748b; margin-right: 10px; }
+.log-type-info { color: #38bdf8; }
+.log-type-success { color: #34d399; }
+.log-type-error { color: #f87171; }
+.log-type-warn { color: #fbbf24; }
+
+/* Modal de Licença */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    max-width: 450px;
+    width: 90%;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: #10b981;
+}
+
+.modal-content p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
